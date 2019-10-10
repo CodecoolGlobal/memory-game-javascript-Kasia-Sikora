@@ -81,4 +81,20 @@ const cardsArray = [
     },
 ];
 
+let newCardsArray = cardsArray.concat(cardsArray);
 
+let game = document.getElementById('game');
+
+let grid = document.createElement('div');
+
+grid.setAttribute('class', 'grid');
+game.appendChild(grid);
+
+
+for (let cards of newCardsArray) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.name = cards.name;
+    card.style.backgroundImage = `url(${cards.img})`;
+    grid.appendChild(card);
+}
