@@ -43,9 +43,25 @@ form select {
     flex-wrap: wrap;
 }
 
+.card-top,
+.card-body,
 .card {
     width: 100px;
     height: 100px;
     margin: 5px;
+    border-radius: 5px;
+}
+
+.card-body {
     background-size: cover;
+    display: none;
+}
+
+.card-top {
+    background-size: cover;
+}
+
+.selected {
+    box-shadow: 5px 5px darkgreen;
+    border: 5px solid red;
 }
