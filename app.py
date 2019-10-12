@@ -6,8 +6,8 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        print(request.form)
-        return render_template('game.html')
+        counter = request.form['option']
+        return render_template('game.html', counter=counter)
     else:
         return render_template('index.html')
 

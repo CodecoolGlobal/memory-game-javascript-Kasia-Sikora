@@ -81,7 +81,7 @@ const cardsArray = [
     },
 ];
 
-let newCardsArray = cardsArray.concat(cardsArray);
+let newCardsArray = cardsArray.slice(1, parseInt(counter)+1).concat(cardsArray.slice(1, parseInt(counter)+1));
 
 newCardsArray.sort(function () {return 0.5 - Math.random()});
 
@@ -105,7 +105,6 @@ for (let cards of newCardsArray) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.name = cards.name;
-    card.addEventListener('click', clickHandler);
 
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
@@ -114,6 +113,7 @@ for (let cards of newCardsArray) {
     const cardTop = document.createElement('div');
     cardTop.classList.add('card-top');
     cardTop.style.backgroundImage = `url('/static/img/leaf1.jpg')`;
+    cardTop.addEventListener('click', clickHandler);
 
     card.appendChild(cardTop);
     card.appendChild(cardBody);
@@ -122,36 +122,28 @@ for (let cards of newCardsArray) {
 
 
 function clickHandler(event) {
+
     count++;
-    if (event.target.parentElement.getAttribute('data-name') === previousChoice) {
-        return
-    }
+
+    let body = event.target.parentNode.firstChild;
+    body.style.display = 'none';
+
+    let top = event.target.parentNode.lastChild;
+    top.style.display = 'flex';
+    top.classList.add('selected');
+
     if (count <=2) {
         if (count === 1) {
             firstChoice = event.target.parentElement.getAttribute('data-name');
-            console.log('first' + firstChoice)
+            console.log('first' + firstChoice);
+            console.log(count);
         }
         if (count === 2) {
             secondChoice = event.target.parentElement.getAttribute('data-name');
-            console.log('second'+ secondChoice)
+            console.log('second'+ secondChoice);
+            console.log(count);
+            count = 0;
         }
-
-        console.log(event);
-        let body = event.target.parentNode.firstChild;
-        body.style.display = 'none';
-
-        let top = event.target.parentNode.lastChild;
-        top.style.display = 'flex';
-        top.classList.add('selected');
-
-    } else {
-        let body = event.target.parentNode.firstChild;
-        body.style.display = 'flex';
-
-        let top = event.target.parentNode.lastChild;
-        top.style.display = 'none';
-        top.classList.remove('selected');
-        count = 0;
     }
     previousChoice = event.target.parentElement.getAttribute('data-name');
 }
