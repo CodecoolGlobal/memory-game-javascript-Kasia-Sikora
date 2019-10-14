@@ -126,10 +126,6 @@ for (let cards of newCardsArray) {
 }
 
 
-if (firstChoice === secondChoice) {
-    card.removeEventListener('click', clickHandler, true);
-}
-
 function isMatch() {
     let cards = document.getElementsByClassName('selected');
     console.log(cards);
